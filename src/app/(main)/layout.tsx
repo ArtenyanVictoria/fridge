@@ -10,9 +10,9 @@ export default function DashboardLayout({
     return (
         <AdminProvider>
             <Header />
-            <main className=''>
-                {children}
-            </main>
+
+            {children}
+
         </AdminProvider>
 
     )
