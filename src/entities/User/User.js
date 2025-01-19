@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const userSchems = new Schema(
+const userSchema = new Schema(
     {
         id: { type: Number, unique: true, required: true, default: 0 },
         name: { type: String, required: true },
@@ -13,7 +13,7 @@ const userSchems = new Schema(
     }
 )
 
-userShema.pre('save', function (next) {
+userSchema.pre('save', function (next) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const user = this;
     if (user.isNew) {
@@ -27,5 +27,5 @@ userShema.pre('save', function (next) {
     }
 })
 
-const UserModel = mongoose.models.User || mongoose.model('User', userSchems);
+const UserModel = mongoose.models.User || mongoose.model('User', userSchema);
 export default UserModel;
