@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 const itemSchema = new Schema(
     {
         id: { type: Number, unique: true, required: true, default: 0 },
+        username: { type: String, required: true },
         name: { type: String, required: true },
         type: { type: String, required: true },
         manufactureDate: { type: String, required: true },
