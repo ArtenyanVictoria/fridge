@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn, useSession } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -65,6 +66,8 @@ export default function PageReg() {
                                 {error}
                             </div>
                         </form>
+                        <hr className="my-4" />
+                        <Link className="w-full flex justify-center" href='/rigister'>Зарегистрироватся</Link>
                     </CardContent>
                 </Card>
             }
