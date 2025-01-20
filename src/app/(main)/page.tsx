@@ -2,7 +2,7 @@
 
 import Modal from "@/components/ui/Modal";
 import { IItem } from "@/entities/Item/Item";
-import { Eye } from "lucide-react";
+import { Eye, Trash2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
@@ -34,6 +34,19 @@ export default function Home() {
         setLoading(false)
       });
   }
+
+  
+  const handleDelete = (id: any) => {
+    fetch("/api/item/" + id, {
+        method: "DELETE",
+    })
+        .then(() => {
+            getItems()
+        })
+        .catch((error) => {
+            console.error("Error fetching prizes:", error);
+        });
+};
 
   const filteredLogs = items.filter(item => {
     const logName = item.name.toLowerCase();
@@ -97,9 +110,10 @@ export default function Home() {
               <span className="flex justify-center items-center">
                 {item.allergens == '' ? 'Нету' : item.allergens}
               </span>
-              <span className="flex justify-center items-center">
+              <span className="flex justify-center items-center gap-3">
                 {/* TODO: Добавить кнопки */}
                 <Eye className="cursor-pointer" onClick={() => { setSelectItem(item); setModal(true) }} />
+                <Trash2 className='cursor-pointer' onClick={()=> handleDelete(item.id)} />
               </span>
             </span>
           )}
