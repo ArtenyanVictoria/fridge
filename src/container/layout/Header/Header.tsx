@@ -13,6 +13,7 @@ export default function Header() {
                 <Link href={'/'} className='hover:bg-[#c5dcf8]/[.6] transition-all duration-300 px-4 py-2 rounded-lg'>Главная</Link>
                 <Link href={'/scan'} className='hover:bg-[#c5dcf8]/[.6] transition-all duration-300 px-4 py-2 rounded-lg'>Распознать</Link>
                 <Link href={'/analitick'} className='hover:bg-[#c5dcf8]/[.6] transition-all duration-300 px-4 py-2 rounded-lg'>Аналитика</Link>
+                <Link href={'/purchase'} className='hover:bg-[#c5dcf8]/[.6] transition-all duration-300 px-4 py-2 rounded-lg'>Корзина</Link>
             </nav>
             <div className='flex gap-3 items-center'>
                 <span>{session.user.name}</span>
