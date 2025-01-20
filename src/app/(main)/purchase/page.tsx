@@ -74,15 +74,15 @@ export default function PagePurch() {
 
     return (
         <main className="max-w-[95vw] lg:max-w-[896px] xl:max-w-[1056px] w-full">
-            <div className="flex w-full mt-10 justify-between">
+            <div className="flex w-full mt-10 items-center gap-12">
                 <Button onClick={() => setModal(true)}>
                     Добавить
                 </Button>
-                Количество продуктов:
+                Количество продуктов: {items.length}
             </div>
 
             {loading ?
-                <h1 className='text-xl'>Загрузка...</h1>
+                <h1 className='text-xl mt-10'>Загрузка...</h1>
                 :
                 <div className="mt-10 flex flex-col fap-4 max-w-[800px]">
                     <span className="grid grid-cols-3  text-sm pb-10">
