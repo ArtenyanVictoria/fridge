@@ -35,18 +35,18 @@ export default function Home() {
       });
   }
 
-  
+
   const handleDelete = (id: any) => {
     fetch("/api/item/" + id, {
-        method: "DELETE",
+      method: "DELETE",
     })
-        .then(() => {
-            getItems()
-        })
-        .catch((error) => {
-            console.error("Error fetching prizes:", error);
-        });
-};
+      .then(() => {
+        getItems()
+      })
+      .catch((error) => {
+        console.error("Error fetching prizes:", error);
+      });
+  };
 
   const filteredLogs = items.filter(item => {
     const logName = item.name.toLowerCase();
@@ -98,22 +98,27 @@ export default function Home() {
           </span>
           {filteredLogs.map((item, index) =>
             <span className="grid grid-cols-5 pb-4 border-b border-b-[#f9fcff]/[.40]" key={index}>
-              <span className="flex items-center justify-center gap-5">
+              <span className="flex items-center text-center justify-center gap-5">
                 {item.name}
               </span>
               <span className="text-center flex items-center justify-center">
-                {item.expirationDate}
-              </span>
-              <span className="flex justify-center items-center">
                 {item.amount}
+              </span>
+              <span
+                className="flex justify-center items-center"
+                style={{
+                  color:
+                    (new Date() - new Date(item.expirationDate)) / (1000 * 3600 * 24) >= 1 ? 'red' : Math.abs((new Date() - new Date(item.expirationDate)) / (1000 * 3600 * 24)) <= 3 ? 'orange' : 'green'
+                }}
+              >
+                {item.expirationDate}
               </span>
               <span className="flex justify-center items-center">
                 {item.allergens == '' ? 'Нету' : item.allergens}
               </span>
               <span className="flex justify-center items-center gap-3">
-                {/* TODO: Добавить кнопки */}
                 <Eye className="cursor-pointer" onClick={() => { setSelectItem(item); setModal(true) }} />
-                <Trash2 className='cursor-pointer' onClick={()=> handleDelete(item.id)} />
+                <Trash2 className='cursor-pointer' onClick={() => handleDelete(item.id)} />
               </span>
             </span>
           )}
@@ -131,6 +136,6 @@ export default function Home() {
           <li className="flex justify-between"><strong>Аллергены:</strong>{selectItem?.allergens == '' ? 'Нету' : selectItem?.allergens}</li>
         </ul>
       </Modal>
-    </main>
+    </main >
   );
 }
