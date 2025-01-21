@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
 import { Button } from "@/components/ui/button"
@@ -12,10 +14,8 @@ import { useEffect, useState } from "react";
 export default function PagePurch() {
     const [items, setItems] = useState<IPurch[]>([]);
     const [loading, setLoading] = useState(true);
-    const [searchQuery, setSearchQuery] = useState('');
 
     const [modal, setModal] = useState(false);
-    const [selectItem, setSelectItem] = useState<IPurch>()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: session }: any = useSession();
 
@@ -61,7 +61,7 @@ export default function PagePurch() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({name, amount, username: session.user?.name}),
+                body: JSON.stringify({ name, amount, username: session.user?.name }),
             })
             if (res.status === 200) {
                 setModal(false);
