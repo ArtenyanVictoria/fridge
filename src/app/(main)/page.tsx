@@ -36,12 +36,27 @@ export default function Home() {
   }
 
 
-  const handleDelete = (id: any) => {
-    fetch("/api/item/" + id, {
+  const handleDelete = (item: IItem) => {
+    fetch("/api/item/" + item.id, {
       method: "DELETE",
     })
       .then(() => {
         getItems()
+        fetch("/api/analitic", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: session.user?.name,
+            nameItem: item.name,
+            count: item.amount,
+            type: 'delete'
+          }),
+        })
+          .catch((error) => {
+            console.error("Error fetching prizes:", error);
+          });
       })
       .catch((error) => {
         console.error("Error fetching prizes:", error);
@@ -118,7 +133,7 @@ export default function Home() {
               </span>
               <span className="flex justify-center items-center gap-3">
                 <Eye className="cursor-pointer" onClick={() => { setSelectItem(item); setModal(true) }} />
-                <Trash2 className='cursor-pointer' onClick={() => handleDelete(item.id)} />
+                <Trash2 className='cursor-pointer' onClick={() => handleDelete(item)} />
               </span>
             </span>
           )}

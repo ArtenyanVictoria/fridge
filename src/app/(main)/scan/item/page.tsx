@@ -1,5 +1,6 @@
 'use client'
 import { Button } from '@/components/ui/button';
+import { IItem } from '@/entities/Item/Item';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -21,7 +22,7 @@ export default function PageInfo() {
 
     async function addItem() {
         try {
-            const item = param
+            const item: IItem = param
             item.username = session.user?.name
             const res = await fetch('/api/item/create', {
                 method: "POST",
@@ -31,6 +32,21 @@ export default function PageInfo() {
                 body: JSON.stringify(item),
             })
             if (res.status === 200) {
+                fetch("/api/analitic", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: session.user?.name,
+                        nameItem: item.name,
+                        count: item.amount,
+                        type: 'add'
+                    }),
+                })
+                    .catch((error) => {
+                        console.error("Error fetching prizes:", error);
+                    });
                 router.push('/')
             }
         } catch (err) {

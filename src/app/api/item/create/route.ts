@@ -12,7 +12,7 @@ export const POST = async (req: Request) => {
         await newItem.save();
         return new NextResponse('Продукт добавлен', { status: 200 })
     } catch (err) {
-        console.log(err)
+        console.error(err)
         return new NextResponse('Ошибка добавления продукта', { status: 500 })
     }
 }
