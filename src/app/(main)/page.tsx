@@ -5,6 +5,7 @@ import { IItem } from "@/entities/Item/Item";
 import { Eye, Trash2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export default function Home() {
   const [items, setItems] = useState<IItem[]>([]);
@@ -19,6 +20,16 @@ export default function Home() {
   useEffect(() => {
     getItems()
   }, [])
+
+  useEffect(() => {
+    if (loading == false) {
+      items.map(item => {
+        if ((new Date() - new Date(item.expirationDate)) / (1000 * 3600 * 24) >= 1) {
+          toast("В наличие есть один просроченый продукт")
+        }
+      })
+    }
+  }, [loading])
 
   async function getItems() {
     fetch('/api/item?name=' + session.user?.name, {
