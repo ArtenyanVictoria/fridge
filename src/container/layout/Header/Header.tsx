@@ -9,7 +9,7 @@ export default function Header() {
     const { data: session }: any = useSession();
     return (
         <header className='max-w-[95vw] lg:max-w-[896px] xl:max-w-[1056px] my-6 flex w-full justify-between  items-center p-2 gap-12 rounded-lg border border-[#e5e6e8]/[.4] bg-[#c5dcf8]/[.4] z-40'>
-            <nav className='flex items-center gap-3'>
+            <nav className='flex-col sm:flex-row flex items-start sm:items-center gap-3'>
                 <Link href={'/'} className='hover:bg-[#c5dcf8]/[.6] transition-all duration-300 px-4 py-2 rounded-lg'>Главная</Link>
                 <Link href={'/scan'} className='hover:bg-[#c5dcf8]/[.6] transition-all duration-300 px-4 py-2 rounded-lg'>Распознать</Link>
                 <Link href={'/analitick'} className='hover:bg-[#c5dcf8]/[.6] transition-all duration-300 px-4 py-2 rounded-lg'>Аналитика</Link>

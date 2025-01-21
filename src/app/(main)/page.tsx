@@ -89,7 +89,7 @@ export default function Home() {
       {loading ?
         <h1 className='text-xl'>Загрузка...</h1>
         :
-        <div className="mt-10 flex flex-col fap-4">
+        <div className="mt-10 flex flex-col fap-4 mb-16">
           <span className="relative max-w-[600px] mb-12">
             <input
               value={searchQuery}
@@ -124,7 +124,7 @@ export default function Home() {
             </span>
           </span>
           {filteredLogs.map((item, index) =>
-            <span className="grid grid-cols-5 pb-4 border-b border-b-[#f9fcff]/[.40]" key={index}>
+            <span className="grid grid-cols-5 pb-4 border-b border-b-[#f9fcff]/[.40] text-xs sm:text-base" key={index}>
               <span className="flex items-center text-center justify-center gap-5">
                 {item.name}
               </span>

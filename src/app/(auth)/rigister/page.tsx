@@ -40,9 +40,9 @@ export default function PageReg() {
             if (res.status === 400) {
                 setError('Пользователь уже зарегистрирован с таким имененм')
             }
-            if (res.status === 200) {
+            if (res.status === 201) {
                 setError("");
-                router.replace("/login");
+                router.push("/login");
             }
         } catch (error) {
             setError("Ошибка, повторите попытку позже");
