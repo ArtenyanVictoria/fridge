@@ -26,7 +26,10 @@ export default function Home() {
     if (loading == false) {
       items.map(item => {
         if ((new Date() - new Date(item.expirationDate)) / (1000 * 3600 * 24) >= 1) {
-          toast("В наличие есть один просроченый продукт")
+          toast("❌ В наличие есть один просроченый продукт")
+        }
+        if (Math.abs((new Date() - new Date(item.expirationDate)) / (1000 * 3600 * 24)) <= 3) {
+          toast("⚠ В наличие есть продукт который скоро испортится")
         }
       })
     }
