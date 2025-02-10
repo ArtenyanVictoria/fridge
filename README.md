@@ -1,9 +1,32 @@
+# О приложении
 Небольшое веб-приложение, предназначенное для управления содержимым холодильника. Проект сделан в рамках предпрофессиональной олимпиады
 
-A small web application designed to manage the contents of the refrigerator. The project was made as part of a pre-professional Olympiad
-```bash
-npm i
+# Запуск программы
 
-npm run dev
+1. [Скачайте среду выполнения node.js](https://nodejs.org/en)
+2. Клонируйте git репозиторий на свое устройство
+3. Откройте консоль в корневой папке и напишите
+```bash
+npm i 
 ```
-Open http://localhost:4503
+4. Создайте файл **.env** и добавте поля со своими значениями
+```Dotenv
+NEXTAUTH_SECRET= #Секрет, например любая комбинация символов
+NEXTAUTH_URL=http://localhost:3000/
+MONGO_URL= #Ссылка на mongoDB
+```
+5. Запустите сервер разработки
+```bash
+npm run dev
+# или
+yarn dev
+# или
+pnpm dev
+# или
+bun dev
+```
+Откройте [http://localhost:4503](http://localhost:4503) в браузере, чтобы увидеть результат.
+
+# Ссылка на видеоролик
+
+[Rutube](https://rutube.ru/video/125db3c872422832bac61d3dfbded376/?r=plwd)
